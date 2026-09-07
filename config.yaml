@@ -1,0 +1,53 @@
+# Single source of truth for paths and hyperparameters.
+# Data lives OUTSIDE the OneDrive-synced project folder on purpose -- 2 GB of
+# PNGs would blow the sync quota and saturate upload bandwidth.
+
+data:
+  root: "C:/ml-data/nih-cxr"
+  labels_csv: "C:/ml-data/nih-cxr/sample_labels.csv"
+  images_full: "C:/ml-data/nih-cxr/sample/images"      # 1024px originals, kept for Grad-CAM display
+  images_small: "C:/ml-data/nih-cxr/images_352"        # preprocessed JPEGs, what we train from
+  # 352 so we can random-crop to 320 and still have augmentation headroom.
+  # Nodules are millimetre-scale: at 224 they were 1-2 pixels wide, which is
+  # why Nodule/Mass scored worst. Resolution is the biggest local lever.
+  resize_px: 352
+  jpeg_quality: 92
+
+split:
+  n_folds: 5
+  seed: 42
+  # Grouped by Patient ID: 5,606 images come from only 4,230 patients, so a
+  # random image-level split would put the same patient in train and test.
+  group_col: "Patient ID"
+
+train:
+  # 320 costs ~2x the compute of 224 but recovers small findings.
+  image_px: 320
+  batch_size: 24          # 320px at bs32 does not fit in 8 GB
+  num_workers: 4
+  amp: true
+  tta: true               # horizontal-flip test-time augmentation at eval
+  # Stage 1: backbone frozen, head only. Stage 2: everything, discriminative LRs.
+  stage1_epochs: 5
+  stage1_lr: 1.0e-3
+  # Was 15, and every model peaked on its final epoch -- the cosine schedule
+  # ended before convergence, so all three were undertrained.
+  stage2_epochs: 30
+  stage2_lr_backbone: 1.0e-5
+  stage2_lr_head: 1.0e-4
+  weight_decay: 1.0e-4
+  dropout: 0.3
+  label_smoothing: 0.05
+  # Uncapped pos_weight for Hernia would be ~430 and wreck training stability.
+  pos_weight_cap: 20.0
+  early_stop_patience: 8     # raised with the longer schedule
+
+# The 224px study found all three statistically indistinguishable
+# (chexpert vs imagenet: p=0.36), so the high-resolution run trains only the
+# best performer. The 224px comparison results are kept under outputs/metrics.
+models:
+  - densenet121_imagenet
+
+paths:
+  checkpoints: "checkpoints"
+  outputs: "outputs"

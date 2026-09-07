@@ -1,0 +1,22 @@
+# environment
+venv/
+__pycache__/
+*.pyc
+.claude/
+.vscode/
+
+# model weights and large run artefacts -- regenerate with the scripts, or fetch from Kaggle
+checkpoints/
+kaggle/run_*/
+*.pt
+*.pth
+
+# image data lives at C:/ml-data/nih-cxr, never in the repo.
+# Exception: the small per-class exemplar thumbnails (NIH data is CC0).
+outputs/predictions/briefing_samples/
+
+# scratch
+image.png
+outputs/reports/run.log
+outputs/reports/run.err
+*.tmp

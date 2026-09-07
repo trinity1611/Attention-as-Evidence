@@ -1,0 +1,23 @@
+# Install torch first, from the CUDA index (cu124 wheels for the RTX 4060):
+#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+# then: pip install -r requirements.txt
+
+numpy
+pandas
+pyyaml
+pillow
+matplotlib
+scikit-learn
+torchxrayvision      # CheXpert-pretrained DenseNet-121 backbone
+
+transformers         # RAD-DINO feature extractor (src.features)
+
+# Phase 3-5 (Grad-CAM, MedGemma, UI)
+grad-cam
+streamlit
+plotly               # interactive probability chart in the app
+reportlab            # PDF export
+python-docx          # report builder (scripts/make_report_doc.py)
+# MedGemma runs through Ollama (local HTTP API on :11434), not transformers:
+#   ollama pull medgemma      -- 4B-it, Q4_K_M GGUF, multimodal, ~3.3 GB
+# so no bitsandbytes / accelerate / Hugging Face gating is needed.
