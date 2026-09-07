@@ -1,0 +1,32 @@
+IMAGE 00021670_020.png   CONDITION C
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "present",
+ "Consolidation": "uncertain",
+ "Edema": "uncertain",
+ "Effusion": "uncertain",
+ "Emphysema": "absent",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "uncertain",
+ "Nodule": "present",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "uncertain",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Cardiomegaly is present. Infiltrates are present at the lung bases. A nodule is present in the lung parenchyma. Pleural thickening is present. Atelectasis is present at the lung bases. Edema and effusion are uncertain. Fibrosis is uncertain. Pneumonia is uncertain. Emphysema is absent. Hernia is absent. Mass is uncertain. Pneumothorax is absent.
+
+IMPRESSION
+The cardiomediastinal silhouette is enlarged. There are infiltrates in the lung bases, and a nodule is present in the lung parenchyma. Pleural thickening is also noted.
+
+RECOMMENDATION
+Further evaluation of the infiltrates and nodule may be warranted.

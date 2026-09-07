@@ -1,0 +1,32 @@
+IMAGE 00015386_000.png   CONDITION C
+TRUTH: Atelectasis, Effusion
+FLAGGED: Atelectasis, Consolidation, Effusion
+ZONES: {'Atelectasis': 'left and central mid zone', 'Consolidation': 'left and central mid zone', 'Effusion': 'left and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "present",
+ "Edema": "uncertain",
+ "Effusion": "present",
+ "Emphysema": "uncertain",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "uncertain",
+ "Nodule": "uncertain",
+ "Pleural_Thickening": "uncertain",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Atelectasis is present in the left and central mid zones. Consolidation is present in the left and central mid zones. Effusion is present in the left and central mid zones. Infiltration is present in the left and central mid zones. Cardiomegaly is uncertain. Edema is uncertain. Emphysema is uncertain. Fibrosis is uncertain. Hernia is absent. Mass is uncertain. Nodule is uncertain. Pleural thickening is uncertain. Pneumonia is present. Pneumothorax is absent.
+
+IMPRESSION
+There are findings of atelectasis, consolidation, and effusion in the left lung. Infiltration is also noted in the left lung. The right lung appears relatively clear.
+
+RECOMMENDATION
+Further evaluation may be warranted to determine the etiology of these findings.

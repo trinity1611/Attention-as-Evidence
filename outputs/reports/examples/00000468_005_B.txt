@@ -1,0 +1,32 @@
+IMAGE 00000468_005.png   CONDITION B
+TRUTH: Emphysema, Pneumothorax
+FLAGGED: Effusion, Pneumothorax
+ZONES: {'Effusion': 'right mid zone', 'Pneumothorax': 'right and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "present",
+ "Consolidation": "absent",
+ "Edema": "present",
+ "Effusion": "present",
+ "Emphysema": "present",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "absent",
+ "Pneumothorax": "present"
+}
+
+--- report ---
+FINDINGS
+Cardiomegaly is present. A right-sided pneumothorax is present along with an effusion. Right sided atelectasis is present. Pulmonary edema is present. Pleural thickening is present. Infiltration is present in the right lung.
+
+IMPRESSION
+There is a right-sided pneumothorax with associated pleural effusion and atelectasis. There is also evidence of pulmonary edema, infiltrates in the right lung, and cardiomegaly.
+
+RECOMMENDATION
+Follow up to assess for resolution of pneumothorax and edema.

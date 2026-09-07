@@ -1,0 +1,27 @@
+IMAGE 00028682_004.png   CONDITION A
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "absent",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+IMPRESSION
+RECOMMENDATION

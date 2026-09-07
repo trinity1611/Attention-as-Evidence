@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-09-06T09:11:11+00:00",
+  "disclaimer": "This is an AI-generated draft produced for research and educational purposes only. It has not been reviewed by a radiologist and must not be used for clinical decision-making.",
+  "versions": {
+    "classifier": "densenet121_full224",
+    "cam": "block3+4_layercam_none",
+    "writer": "medgemma:latest (Ollama, Q4_K_M)"
+  },
+  "image": {
+    "name": "00023097_001.png",
+    "view": "PA",
+    "known_nih_film": true
+  },
+  "classifier": {
+    "findings": [
+      {
+        "finding": "Atelectasis",
+        "probability": 0.7375,
+        "threshold": 0.741,
+        "flagged": false
+      },
+      {
+        "finding": "Cardiomegaly",
+        "probability": 0.341,
+        "threshold": 0.8087,
+        "flagged": false
+      },
+      {
+        "finding": "Consolidation",
+        "probability": 0.6868,
+        "threshold": 0.7484,
+        "flagged": false
+      },
+      {
+        "finding": "Edema",
+        "probability": 0.3203,
+        "threshold": 0.808,
+        "flagged": false
+      },
+      {
+        "finding": "Effusion",
+        "probability": 0.9495,
+        "threshold": 0.7803,
+        "flagged": true
+      },
+      {
+        "finding": "Emphysema",
+        "probability": 0.3739,
+        "threshold": 0.8268,
+        "flagged": false
+      },
+      {
+        "finding": "Fibrosis",
+        "probability": 0.4363,
+        "threshold": 0.6248,
+        "flagged": false
+      },
+      {
+        "finding": "Hernia",
+        "probability": 0.3443,
+        "threshold": 0.4656,
+        "flagged": false
+      },
+      {
+        "finding": "Infiltration",
+        "probability": 0.4974,
+        "threshold": 0.6468,
+        "flagged": false
+      },
+      {
+        "finding": "Mass",
+        "probability": 0.5974,
+        "threshold": 0.8279,
+        "flagged": false
+      },
+      {
+        "finding": "Nodule",
+        "probability": 0.4234,
+        "threshold": 0.7759,
+        "flagged": false
+      },
+      {
+        "finding": "Pleural_Thickening",
+        "probability": 0.5987,
+        "threshold": 0.7152,
+        "flagged": false
+      },
+      {
+        "finding": "Pneumonia",
+        "probability": 0.3738,
+        "threshold": 0.5642,
+        "flagged": false
+      },
+      {
+        "finding": "Pneumothorax",
+        "probability": 0.5556,
+        "threshold": 0.7229,
+        "flagged": false
+      }
+    ],
+    "flagged": [
+      "Effusion"
+    ],
+    "top3": [
+      "Effusion",
+      "Atelectasis",
+      "Consolidation"
+    ],
+    "note": "Probabilities are uncalibrated model scores, not clinical probabilities."
+  },
+  "explanation": {
+    "method": "block3+4_layercam_none",
+    "zones": {
+      "Effusion": "right and central mid zone",
+      "Atelectasis": "right and central mid zone",
+      "Consolidation": "right and central mid zone"
+    },
+    "cam_area_fraction_at_50pct": {
+      "Effusion": 0.1138,
+      "Atelectasis": 0.1072,
+      "Consolidation": 0.1133
+    },
+    "radiologist_boxes": [],
+    "reliability_from_evaluation": {
+      "Effusion": {
+        "n_boxes": 8,
+        "hit_rate": 0.375,
+        "hits": 3,
+        "mean_iou": 0.148
+      },
+      "Atelectasis": {
+        "n_boxes": 11,
+        "hit_rate": 0.455,
+        "hits": 5,
+        "mean_iou": 0.162
+      }
+    }
+  },
+  "ground_truth_labels": [
+    "Atelectasis",
+    "Effusion"
+  ]
+}

@@ -1,0 +1,32 @@
+IMAGE 00000468_005.png   CONDITION A
+TRUTH: Emphysema, Pneumothorax
+FLAGGED: Effusion, Pneumothorax
+ZONES: {'Effusion': 'right mid zone', 'Pneumothorax': 'right and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "present",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+There is a right-sided chest tube in place. There are areas of consolidation and infiltration within the right lung, with associated pleural effusion. The left lung appears clear. Cardiomegaly cannot be excluded.
+
+IMPRESSION
+The findings suggest pneumonia and possible pulmonary edema/infiltrate on the right side.
+
+RECOMMENDATION
+Follow-up chest radiograph is recommended to assess for resolution of infiltrates and effusion.

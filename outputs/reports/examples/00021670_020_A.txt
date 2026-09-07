@@ -1,0 +1,32 @@
+IMAGE 00021670_020.png   CONDITION A
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "present",
+ "Consolidation": "absent",
+ "Edema": "uncertain",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "absent",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Cardiomegaly is present. Atelectasis is present in the lung bases.
+
+IMPRESSION
+The heart appears enlarged, and there are areas of atelectasis at the lung bases.
+
+RECOMMENDATION
+Further evaluation may be warranted depending on clinical context.

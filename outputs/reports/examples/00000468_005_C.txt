@@ -1,0 +1,32 @@
+IMAGE 00000468_005.png   CONDITION C
+TRUTH: Emphysema, Pneumothorax
+FLAGGED: Effusion, Pneumothorax
+ZONES: {'Effusion': 'right mid zone', 'Pneumothorax': 'right and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "uncertain",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "present",
+ "Emphysema": "present",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "absent",
+ "Pneumothorax": "present"
+}
+
+--- report ---
+FINDINGS
+There is a right-sided pneumothorax with associated pleural thickening. There is also an area of consolidation in the right mid zone, and some emphysema present. The heart size appears normal.
+
+IMPRESSION
+The chest radiograph shows evidence of a right-sided pneumothorax and consolidation in the right mid zone.
+
+RECOMMENDATION
+Follow up to assess for resolution of the pneumothorax and consolidation is recommended.

@@ -1,0 +1,32 @@
+IMAGE 00014125_034.png   CONDITION B
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "absent",
+ "Mass": "present",
+ "Nodule": "present",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Mass and nodule are present in the lung.
+
+IMPRESSION
+A mass and nodule are present in the lung.
+
+RECOMMENDATION
+Further evaluation is recommended to characterize the mass and nodule.

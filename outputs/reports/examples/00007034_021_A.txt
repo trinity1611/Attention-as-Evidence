@@ -1,0 +1,32 @@
+IMAGE 00007034_021.png   CONDITION A
+TRUTH: No finding
+FLAGGED: Atelectasis, Infiltration
+ZONES: {'Atelectasis': 'right and central mid zone', 'Infiltration': 'bilateral mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "absent",
+ "Edema": "uncertain",
+ "Effusion": "present",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "absent",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "uncertain",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+There is a small left pleural effusion. There is some right sided pleural thickening. The heart size is difficult to assess due to the patient's positioning and the presence of spinal hardware. No consolidation, pneumothorax or pneumonia are identified.
+
+IMPRESSION
+Small left pleural effusion and right-sided pleural thickening are present.
+
+RECOMMENDATION
+Follow up chest radiograph may be helpful if clinical suspicion for pulmonary pathology persists.

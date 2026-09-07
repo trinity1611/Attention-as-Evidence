@@ -1,0 +1,32 @@
+IMAGE 00016094_020.png   CONDITION B
+TRUTH: Mass
+FLAGGED: Fibrosis, Mass, Pleural_Thickening
+ZONES: {'Fibrosis': 'right and central upper-to-mid zone', 'Mass': 'right and central upper-to-mid zone', 'Pleural_Thickening': 'right and central upper-to-mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "uncertain",
+ "Edema": "absent",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "present",
+ "Hernia": "absent",
+ "Infiltration": "uncertain",
+ "Mass": "present",
+ "Nodule": "uncertain",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+There is a mass in the lung. There is pleural thickening present. There is fibrosis present.
+
+IMPRESSION
+A mass and pleural thickening are seen on chest radiograph.
+
+RECOMMENDATION
+Further evaluation with CT scan of the chest is recommended to characterize the mass and pleural thickening.

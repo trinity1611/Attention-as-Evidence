@@ -1,0 +1,28 @@
+IMAGE 00016094_020.png   CONDITION A
+TRUTH: Mass
+FLAGGED: Fibrosis, Mass, Pleural_Thickening
+ZONES: {'Fibrosis': 'right and central upper-to-mid zone', 'Mass': 'right and central upper-to-mid zone', 'Pleural_Thickening': 'right and central upper-to-mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "absent",
+ "Emphysema": "uncertain",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "absent",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Impression: The lungs are clear. No obvious acute findings.
+RECOMMENDATION
+No recommendation at this time.

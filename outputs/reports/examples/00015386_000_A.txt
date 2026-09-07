@@ -1,0 +1,32 @@
+IMAGE 00015386_000.png   CONDITION A
+TRUTH: Atelectasis, Effusion
+FLAGGED: Atelectasis, Consolidation, Effusion
+ZONES: {'Atelectasis': 'left and central mid zone', 'Consolidation': 'left and central mid zone', 'Effusion': 'left and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "uncertain",
+ "Edema": "uncertain",
+ "Effusion": "uncertain",
+ "Emphysema": "present",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "uncertain",
+ "Mass": "uncertain",
+ "Nodule": "uncertain",
+ "Pleural_Thickening": "uncertain",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Atelectasis is present in the left lung. Emphysema is present in the right lung. Pneumonia is present in the left lung. Cardiomegaly cannot be excluded. Edema, consolidation, effusion, infiltration, mass, nodule, pleural thickening and pneumothorax are uncertain.
+
+IMPRESSION
+There is evidence of atelectasis, pneumonia, and emphysema on chest radiograph. Cardiomegaly is not well visualized.
+
+RECOMMENDATION
+Further evaluation may be warranted to evaluate the cause of the findings.

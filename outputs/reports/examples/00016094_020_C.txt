@@ -1,0 +1,32 @@
+IMAGE 00016094_020.png   CONDITION C
+TRUTH: Mass
+FLAGGED: Fibrosis, Mass, Pleural_Thickening
+ZONES: {'Fibrosis': 'right and central upper-to-mid zone', 'Mass': 'right and central upper-to-mid zone', 'Pleural_Thickening': 'right and central upper-to-mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "present",
+ "Hernia": "absent",
+ "Infiltration": "absent",
+ "Mass": "present",
+ "Nodule": "absent",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+There is a mass in the right mid lung field. There is also pleural thickening in the right mid lung field, as well as fibrosis in the right mid lung field.
+
+IMPRESSION
+A mass with associated pleural thickening and fibrosis are present in the right mid lung field.
+
+RECOMMENDATION
+Further evaluation of the mass is recommended.

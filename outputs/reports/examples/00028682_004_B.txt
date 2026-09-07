@@ -1,0 +1,32 @@
+IMAGE 00028682_004.png   CONDITION B
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "uncertain",
+ "Edema": "uncertain",
+ "Effusion": "uncertain",
+ "Emphysema": "present",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "uncertain",
+ "Nodule": "present",
+ "Pleural_Thickening": "uncertain",
+ "Pneumonia": "uncertain",
+ "Pneumothorax": "present"
+}
+
+--- report ---
+FINDINGS
+Infiltration is present in the lung. A nodule is present in the lung. Emphysema is present in the lung. Pneumothorax is present in the pleural space. Atelectasis is present in the lung. The heart size appears normal, but cannot be excluded. There are no findings of consolidation, edema, effusion, fibrosis, hernia, mass or pneumonia. Pleural thickening is uncertain.
+
+IMPRESSION
+There is evidence of atelectasis, emphysema and a nodule in the lung. There is also evidence of infiltration and pneumothorax.
+
+RECOMMENDATION
+Further evaluation may be warranted to characterize the nodule and infiltrate.

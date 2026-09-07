@@ -1,0 +1,32 @@
+IMAGE 00018840_030.png   CONDITION C
+TRUTH: No finding
+FLAGGED: Edema, Infiltration, Pneumonia
+ZONES: {'Edema': 'left and central mid zone', 'Infiltration': 'bilateral mid zone', 'Pneumonia': 'left and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "uncertain",
+ "Edema": "present",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "uncertain",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Edema is present in the left and central mid zones. Infiltration is present bilaterally in the mid zones. Pneumonia is present in the left and central mid zones. Nodule cannot be excluded. Consolidation is uncertain. Atelectasis is absent. Cardiomegaly is absent. Effusion is absent. Emphysema is absent. Fibrosis is absent. Hernia is absent. Mass is absent. Pleural thickening is absent. Pneumothorax is absent.
+
+IMPRESSION
+There are infiltrates and edema in the lungs, with a possible nodule present.
+
+RECOMMENDATION
+Further imaging may be helpful to evaluate the nodule and assess for other causes of lung disease.

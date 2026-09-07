@@ -1,0 +1,32 @@
+IMAGE 00018840_030.png   CONDITION B
+TRUTH: No finding
+FLAGGED: Edema, Infiltration, Pneumonia
+ZONES: {'Edema': 'left and central mid zone', 'Infiltration': 'bilateral mid zone', 'Pneumonia': 'left and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "absent",
+ "Cardiomegaly": "absent",
+ "Consolidation": "uncertain",
+ "Edema": "present",
+ "Effusion": "absent",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "present",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+There is diffuse bilateral pulmonary infiltrates and nodules. There is also evidence of edema in the lungs.
+
+IMPRESSION
+The findings are consistent with widespread pneumonia, possibly complicated by pulmonary edema or other processes causing nodular opacities.
+
+RECOMMENDATION
+Further evaluation may be warranted to determine the etiology of the infiltrates and nodules.

@@ -1,0 +1,32 @@
+IMAGE 00021670_020.png   CONDITION B
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "present",
+ "Consolidation": "uncertain",
+ "Edema": "present",
+ "Effusion": "uncertain",
+ "Emphysema": "absent",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "uncertain",
+ "Nodule": "present",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "uncertain",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Cardiomegaly is present. Infiltrates are present in the lung fields. A nodule is present. Atelectasis is present at the lung bases. Pleural thickening is present. Edema is present in the lung fields.
+
+IMPRESSION
+The heart is enlarged, and there are infiltrates in the lungs with a nodule present.
+
+RECOMMENDATION
+Further evaluation may be warranted to characterize the infiltrates and nodule.

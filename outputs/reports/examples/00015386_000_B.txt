@@ -1,0 +1,32 @@
+IMAGE 00015386_000.png   CONDITION B
+TRUTH: Atelectasis, Effusion
+FLAGGED: Atelectasis, Consolidation, Effusion
+ZONES: {'Atelectasis': 'left and central mid zone', 'Consolidation': 'left and central mid zone', 'Effusion': 'left and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "present",
+ "Edema": "uncertain",
+ "Effusion": "present",
+ "Emphysema": "uncertain",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "uncertain",
+ "Nodule": "uncertain",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Atelectasis is present in the left lower lobe. Consolidation is present in the left lung, likely representing pneumonia. There is a pleural effusion on the left side. Pleural thickening is also noted on the left side. The heart size appears normal. No pneumothorax or emphysema are identified.
+
+IMPRESSION
+There is evidence of consolidation and pleural effusion in the left lung, concerning for pneumonia. Atelectasis is present at the lung base.
+
+RECOMMENDATION
+Further evaluation with a CT scan may be warranted to better characterize the consolidation and effusion.

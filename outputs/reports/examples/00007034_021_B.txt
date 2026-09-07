@@ -1,0 +1,32 @@
+IMAGE 00007034_021.png   CONDITION B
+TRUTH: No finding
+FLAGGED: Atelectasis, Infiltration
+ZONES: {'Atelectasis': 'right and central mid zone', 'Infiltration': 'bilateral mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "present",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Atelectasis is present in the lung bases. Infiltrates are seen within the lungs, likely representing pneumonia or edema. There is a small pleural effusion on the left side. Pleural thickening is noted along the pleura. Cardiomegaly cannot be excluded due to limited visualization of the cardiac silhouette.
+
+IMPRESSION
+There are infiltrates and a small pleural effusion in the left lung.
+
+RECOMMENDATION
+Follow-up chest radiograph may be helpful to assess for resolution of the infiltrates and effusion, especially if clinical suspicion for pneumonia or edema persists.

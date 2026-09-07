@@ -1,0 +1,32 @@
+IMAGE 00007034_021.png   CONDITION C
+TRUTH: No finding
+FLAGGED: Atelectasis, Infiltration
+ZONES: {'Atelectasis': 'right and central mid zone', 'Infiltration': 'bilateral mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "absent",
+ "Edema": "absent",
+ "Effusion": "present",
+ "Emphysema": "absent",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "absent",
+ "Nodule": "absent",
+ "Pleural_Thickening": "present",
+ "Pneumonia": "absent",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+Infiltration is present in the bilateral mid zones. There is also a small pleural effusion on the left side, with some pleural thickening noted bilaterally in the mid zones. The heart size appears normal. No consolidation, pneumothorax, or other significant abnormalities are identified.
+
+IMPRESSION
+There is evidence of atelectasis and infiltration in the lungs. A small pleural effusion is present on the left.
+
+RECOMMENDATION
+Follow-up chest radiograph may be considered to assess for resolution of infiltrates.

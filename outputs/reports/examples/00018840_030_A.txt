@@ -1,0 +1,32 @@
+IMAGE 00018840_030.png   CONDITION A
+TRUTH: No finding
+FLAGGED: Edema, Infiltration, Pneumonia
+ZONES: {'Edema': 'left and central mid zone', 'Infiltration': 'bilateral mid zone', 'Pneumonia': 'left and central mid zone'}
+
+--- JSON findings ---
+{
+ "Atelectasis": "uncertain",
+ "Cardiomegaly": "uncertain",
+ "Consolidation": "uncertain",
+ "Edema": "present",
+ "Effusion": "uncertain",
+ "Emphysema": "uncertain",
+ "Fibrosis": "uncertain",
+ "Hernia": "absent",
+ "Infiltration": "uncertain",
+ "Mass": "uncertain",
+ "Nodule": "uncertain",
+ "Pleural_Thickening": "uncertain",
+ "Pneumonia": "present",
+ "Pneumothorax": "absent"
+}
+
+--- report ---
+FINDINGS
+There is bilateral pulmonary edema and pneumonia. The heart size is difficult to assess due to the diffuse infiltrates. There are no obvious pleural effusions or pneumothorax.
+
+IMPRESSION
+Bilateral pulmonary edema and pneumonia.
+
+RECOMMENDATION
+Follow-up chest radiograph in 4 weeks would be helpful to evaluate for resolution of findings.

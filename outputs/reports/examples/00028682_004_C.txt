@@ -1,0 +1,32 @@
+IMAGE 00028682_004.png   CONDITION C
+TRUTH: No finding
+FLAGGED: none
+ZONES: {}
+
+--- JSON findings ---
+{
+ "Atelectasis": "present",
+ "Cardiomegaly": "absent",
+ "Consolidation": "uncertain",
+ "Edema": "absent",
+ "Effusion": "absent",
+ "Emphysema": "present",
+ "Fibrosis": "absent",
+ "Hernia": "absent",
+ "Infiltration": "present",
+ "Mass": "uncertain",
+ "Nodule": "present",
+ "Pleural_Thickening": "absent",
+ "Pneumonia": "absent",
+ "Pneumothorax": "present"
+}
+
+--- report ---
+FINDINGS
+Infiltration is present in the lung. A nodule is present in the lung. There is evidence of emphysema in the lung. Pneumothorax is present in the pleural space. Atelectasis is present in the lung.
+
+IMPRESSION
+There are findings suggestive of infiltrative disease and a possible mass in the lungs, along with emphysema and pneumothorax.
+
+RECOMMENDATION
+Further evaluation may be warranted to characterize the nodule and infiltrate.
