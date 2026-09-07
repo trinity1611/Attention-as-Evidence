@@ -28,15 +28,26 @@ st.markdown(f'<div class="warn">{DISCLAIMER_SHORT} Outputs are drafts for a qual
 
 svc = service()
 img_dir = Path(CFG.data.images_full)
+DEMO_DIR = Path(__file__).resolve().parents[2] / "data" / "demo_films"   # 11 CC0 films shipped in the repo
 
 # --------------------------------------------------------------- input ---
 left, right = st.columns([1, 1.2], gap="large")
 with left:
     st.subheader("1 · Film")
     up = st.file_uploader("Upload a frontal chest X-ray (PNG / JPG)", type=["png", "jpg", "jpeg"])
-    boxed = read_csv(METRICS / "gradcam_localization_block3+4_layercam_none.csv")
-    boxed = boxed[boxed.model == "densenet121_full224"].image.drop_duplicates().tolist()
-    sample = st.selectbox("…or pick a held-out NIH film with a radiologist box", ["—"] + boxed)
+    if img_dir.exists():
+        boxed = read_csv(METRICS / "gradcam_localization_block3+4_layercam_none.csv")
+        boxed = boxed[boxed.model == "densenet121_full224"].image.drop_duplicates().tolist()
+        sample = st.selectbox("…or pick a held-out NIH film with a radiologist box", ["—"] + boxed)
+    else:
+        img_dir = DEMO_DIR
+        demo = sorted(p.name for p in DEMO_DIR.glob("*.png")) if DEMO_DIR.exists() else []
+        sample = st.selectbox("…or pick one of the demo films shipped with the repository", ["—"] + demo)
+        st.markdown('<div class="cap">The full NIH sample is not on this machine, so the picker shows the '
+                    f'{len(demo)} held-out demo films from <code>data/demo_films</code> (all from the official '
+                    'test split, never trained on). Upload any other frontal chest X-ray as well; known NIH '
+                    'films are recognised by content. To get the full sample, see README → Data.</div>',
+                    unsafe_allow_html=True)
     view = st.radio("View position", ["auto", "PA", "AP"], horizontal=True,
                     help="AP (bedside) films magnify the heart; the report writer is told which it is.")
 

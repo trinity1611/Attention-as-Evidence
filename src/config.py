@@ -6,6 +6,7 @@ across preprocessing, training, evaluation and the UI.
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 from types import SimpleNamespace
 
@@ -13,7 +14,13 @@ import pandas as pd
 import yaml
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-CONFIG_PATH = PROJECT_ROOT / "config.yaml"
+# Set CXR_CONFIG to point at a personal copy (e.g. config.local.yaml, gitignored)
+# so teammates can change data paths without editing the tracked config.yaml.
+CONFIG_PATH = Path(os.environ.get("CXR_CONFIG", PROJECT_ROOT / "config.yaml"))
+# Small NIH metadata files (bbox list, official split lists, sample labels) are
+# committed under data/ so the app runs from a bare clone; the image folders
+# are not. meta_path() prefers the user's data root, then the repo copy.
+REPO_DATA = PROJECT_ROOT / "data"
 
 # Alphabetical, matching the NIH label strings exactly. "No Finding" is not a
 # class -- it is the all-zero vector.
@@ -64,6 +71,14 @@ OUTPUT_SUBDIRS = {
     "plots": "plots",                   # confusion matrices, ROC, loss curves
     "metrics": "metrics",               # CSV/JSON result tables
 }
+
+
+def meta_path(cfg, name: str) -> Path | None:
+    """Locate a metadata file: <data.root>/meta/<name>, else data/meta/<name> in the repo."""
+    for cand in (Path(cfg.data.root) / "meta" / name, REPO_DATA / "meta" / name, REPO_DATA / name):
+        if cand.exists():
+            return cand
+    return None
 
 
 def load_config(path: Path | str = CONFIG_PATH) -> SimpleNamespace:

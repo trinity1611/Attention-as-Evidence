@@ -28,7 +28,7 @@ import pandas as pd
 import torch
 from PIL import Image
 
-from src.config import CLASSES, N_CLASSES, load_config, read_csv
+from src.config import CLASSES, N_CLASSES, load_config, meta_path, read_csv
 from src.gradcam import BBOX_TO_CLASS, CamEngine, DEFAULT_CAM, cam_tag, localisation_metrics
 from src.medgemma import cam_to_zone, generate_report, zone_phrase
 
@@ -87,10 +87,14 @@ class Service:
 
         # known NIH films: content hash -> name, labels, boxes
         self.folds = read_csv(Path(self.cfg.dirs.root) / "folds.csv").set_index("image")
-        bb = pd.read_csv(Path(self.cfg.data.root) / "meta" / "BBox_List_2017.csv").iloc[:, :6]
-        bb.columns = ["image", "finding", "x", "y", "w", "h"]
-        bb["finding"] = bb["finding"].map(lambda f: BBOX_TO_CLASS.get(f, f))
-        self.bboxes = bb[bb.image.isin(self.folds.index)]
+        bb_path = meta_path(self.cfg, "BBox_List_2017.csv")   # data root, else the repo copy
+        if bb_path is not None:
+            bb = pd.read_csv(bb_path).iloc[:, :6]
+            bb.columns = ["image", "finding", "x", "y", "w", "h"]
+            bb["finding"] = bb["finding"].map(lambda f: BBOX_TO_CLASS.get(f, f))
+            self.bboxes = bb[bb.image.isin(self.folds.index)]
+        else:
+            self.bboxes = pd.DataFrame(columns=["image", "finding", "x", "y", "w", "h"])
         self._hash_index: dict[str, str] | None = None
 
     # ---------------------------------------------------------- lookup ---
@@ -101,11 +105,12 @@ class Service:
             return
         img_dir = Path(self.cfg.data.images_full)
         index = {}
-        for name in self.folds.index:
-            p = img_dir / name
-            if p.exists():
-                index[hashlib.md5(p.read_bytes()).hexdigest()] = name
-        idx_file.write_text(json.dumps(index))
+        if img_dir.exists():
+            for name in self.folds.index:
+                p = img_dir / name
+                if p.exists():
+                    index[hashlib.md5(p.read_bytes()).hexdigest()] = name
+            idx_file.write_text(json.dumps(index))
         self._hash_index = index
 
     def identify(self, file_bytes: bytes) -> str | None:

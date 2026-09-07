@@ -5,11 +5,12 @@ __pycache__/
 .claude/
 .vscode/
 
-# model weights and large run artefacts -- regenerate with the scripts, or fetch from Kaggle
-checkpoints/
+# model weights ARE tracked (checkpoints/, 27 MB each) so teammates can run the
+# app from a clone. Only the raw Kaggle run download is excluded (duplicates them).
 kaggle/run_*/
-*.pt
-*.pth
+
+# personal config copy (see README -> "Point the project at your data")
+config.local.yaml
 
 # image data lives at C:/ml-data/nih-cxr, never in the repo.
 # Exception: the small per-class exemplar thumbnails (NIH data is CC0).

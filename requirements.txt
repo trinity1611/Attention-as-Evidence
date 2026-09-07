@@ -1,23 +1,38 @@
-# Install torch first, from the CUDA index (cu124 wheels for the RTX 4060):
-#   pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
-# then: pip install -r requirements.txt
+# ---------------------------------------------------------------------------
+# Install PyTorch FIRST (it is not listed here on purpose -- the right wheel
+# depends on your machine), then everything below:
+#
+#   NVIDIA GPU (CUDA 12.x driver):
+#     pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cu124
+#   No NVIDIA GPU (CPU only; the app still works, ~5 s per film):
+#     pip install torch==2.6.0 torchvision==0.21.0 --index-url https://download.pytorch.org/whl/cpu
+#
+#   pip install -r requirements.txt
+#
+# Versions are the ones this project was developed and tested with
+# (Python 3.11). Newer minors usually work; pin back to these if something breaks.
+# ---------------------------------------------------------------------------
 
-numpy
-pandas
-pyyaml
-pillow
-matplotlib
-scikit-learn
-torchxrayvision      # CheXpert-pretrained DenseNet-121 backbone
+numpy==2.3.5
+pandas==3.0.5
+scipy==1.17.1
+PyYAML==6.0.3
+pillow==11.3.0
+matplotlib==3.11.1
+scikit-learn==1.9.0
+requests==2.34.2
 
-transformers         # RAD-DINO feature extractor (src.features)
+torchxrayvision==1.5.2   # CheXpert-pretrained DenseNet-121 backbone (224 px study)
+transformers==5.16.1     # RAD-DINO feature extractor (src.features / src.probe)
 
-# Phase 3-5 (Grad-CAM, MedGemma, UI)
-grad-cam
-streamlit
-plotly               # interactive probability chart in the app
-reportlab            # PDF export
-python-docx          # report builder (scripts/make_report_doc.py)
-# MedGemma runs through Ollama (local HTTP API on :11434), not transformers:
-#   ollama pull medgemma      -- 4B-it, Q4_K_M GGUF, multimodal, ~3.3 GB
-# so no bitsandbytes / accelerate / Hugging Face gating is needed.
+# Phases 3-5: Grad-CAM, MedGemma client, Streamlit app, exports, report builder
+grad-cam==1.5.7
+streamlit==1.63.0
+plotly==7.0.0
+reportlab==5.0.1
+python-docx==1.2.0
+
+# MedGemma is NOT a pip package here. It runs through Ollama (local HTTP API on :11434):
+#   https://ollama.com/download   then   ollama pull medgemma
+# (4B-it, Q4_K_M GGUF, multimodal, ~3.3 GB). Optional: the app works without it,
+# only the "Generate draft report" button needs it.
