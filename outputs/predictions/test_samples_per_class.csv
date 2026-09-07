@@ -1,0 +1,15 @@
+image,view,true,predicted,top3,n_true,n_pred,hits,outcome
+00003426_034.png,PA,Atelectasis|Effusion|Infiltration,No Finding,"Pneumothorax 0.69, Atelectasis 0.66, Pleural_Thickening 0.60",3,0,0,miss
+00006481_009.png,PA,Cardiomegaly|Infiltration,Nodule,"Nodule 0.68, Cardiomegaly 0.59, Mass 0.58",2,1,0,miss
+00026221_010.png,PA,Consolidation|Nodule,Effusion|Mass|Nodule|Pleural_Thickening|Pneumothorax,"Pneumothorax 0.88, Mass 0.87, Pleural_Thickening 0.84",2,5,1,partial
+00004344_037.png,AP,Cardiomegaly|Edema,Cardiomegaly|Infiltration,"Cardiomegaly 0.77, Infiltration 0.75, Edema 0.74",2,2,1,partial
+00025787_031.png,AP,Effusion|Infiltration,Consolidation|Edema|Infiltration|Nodule,"Edema 0.85, Infiltration 0.83, Consolidation 0.79",2,4,1,partial
+00001256_007.png,PA,Emphysema|Infiltration|Pleural_Thickening,No Finding,"Effusion 0.63, Atelectasis 0.63, Consolidation 0.62",3,0,0,miss
+00004973_001.png,PA,Fibrosis,Atelectasis|Cardiomegaly|Effusion|Pleural_Thickening,"Effusion 0.82, Pleural_Thickening 0.78, Atelectasis 0.74",1,4,0,miss
+00009759_002.png,AP,Atelectasis|Effusion|Hernia,Atelectasis|Effusion,"Effusion 0.79, Atelectasis 0.71, Mass 0.66",3,2,2,partial
+00007442_016.png,AP,Infiltration,Infiltration,"Edema 0.72, Consolidation 0.64, Infiltration 0.61",1,1,1,exact
+00014731_011.png,PA,Emphysema|Mass,Emphysema|Infiltration|Mass|Nodule|Pneumothorax,"Pneumothorax 0.85, Mass 0.81, Emphysema 0.79",2,5,2,partial
+00021980_000.png,PA,Nodule,No Finding,"Atelectasis 0.65, Effusion 0.58, Pleural_Thickening 0.57",1,0,0,miss
+00006906_020.png,AP,Pleural_Thickening,Atelectasis|Cardiomegaly|Consolidation|Edema|Effusion|Infiltration,"Effusion 0.89, Atelectasis 0.81, Edema 0.80",1,6,0,miss
+00004074_000.png,PA,Mass|Nodule|Pneumonia,No Finding,"Pneumothorax 0.60, Mass 0.55, Nodule 0.54",3,0,0,miss
+00010092_027.png,PA,Atelectasis|Emphysema|Infiltration|Pneumothorax,Atelectasis|Effusion|Infiltration|Mass|Pleural_Thickening,"Effusion 0.82, Atelectasis 0.76, Pleural_Thickening 0.75",4,5,2,partial

@@ -1,0 +1,25 @@
+image,view,true,predicted,top3,n_true,n_pred,hits,outcome
+00025542_004.png,AP,No Finding,Effusion|Infiltration|Nodule,"Nodule 0.76, Infiltration 0.75, Effusion 0.73",0,3,0,miss
+00019468_000.png,PA,No Finding,Atelectasis,"Atelectasis 0.71, Nodule 0.57, Cardiomegaly 0.51",0,1,0,miss
+00004682_001.png,PA,No Finding,No Finding,"Pleural_Thickening 0.52, Edema 0.46, Nodule 0.44",0,0,0,exact
+00000289_001.png,PA,No Finding,No Finding,"Atelectasis 0.51, Infiltration 0.51, Nodule 0.50",0,0,0,exact
+00006370_000.png,AP,No Finding,Infiltration,"Nodule 0.62, Consolidation 0.61, Pneumothorax 0.61",0,1,0,miss
+00010815_003.png,PA,No Finding,No Finding,"Cardiomegaly 0.67, Nodule 0.55, Mass 0.53",0,0,0,exact
+00016761_000.png,PA,No Finding,No Finding,"Nodule 0.62, Consolidation 0.54, Mass 0.51",0,0,0,exact
+00025387_002.png,AP,No Finding,Nodule,"Nodule 0.68, Atelectasis 0.56, Consolidation 0.50",0,1,0,miss
+00006925_004.png,PA,Nodule,No Finding,"Nodule 0.55, Mass 0.53, Pleural_Thickening 0.52",1,0,0,miss
+00014732_003.png,AP,Infiltration,No Finding,"Edema 0.48, Infiltration 0.47, Consolidation 0.44",1,0,0,miss
+00010032_007.png,PA,Consolidation|Mass,Effusion|Emphysema|Mass|Nodule|Pneumothorax,"Pneumothorax 0.96, Mass 0.87, Emphysema 0.85",2,5,1,partial
+00022309_000.png,PA,No Finding,No Finding,"Cardiomegaly 0.46, Infiltration 0.46, Nodule 0.41",0,0,0,exact
+00001996_001.png,PA,No Finding,No Finding,"Nodule 0.59, Fibrosis 0.53, Pneumothorax 0.52",0,0,0,exact
+00011408_000.png,PA,No Finding,No Finding,"Pleural_Thickening 0.45, Nodule 0.43, Fibrosis 0.41",0,0,0,exact
+00002412_000.png,AP,Edema,Infiltration,"Edema 0.73, Infiltration 0.60, Consolidation 0.58",1,1,0,miss
+00004858_082.png,PA,Mass,No Finding,"Infiltration 0.48, Nodule 0.47, Edema 0.41",1,0,0,miss
+00014203_051.png,AP,Consolidation|Mass,Consolidation|Edema|Effusion|Infiltration,"Consolidation 0.82, Infiltration 0.81, Edema 0.80",2,4,1,partial
+00010445_001.png,PA,No Finding,No Finding,"Nodule 0.57, Infiltration 0.53, Consolidation 0.47",0,0,0,exact
+00000835_000.png,PA,No Finding,No Finding,"Cardiomegaly 0.61, Nodule 0.61, Infiltration 0.56",0,0,0,exact
+00017138_027.png,AP,Atelectasis|Effusion,Infiltration,"Edema 0.73, Consolidation 0.71, Infiltration 0.67",2,1,0,miss
+00007540_000.png,PA,No Finding,No Finding,"Mass 0.56, Fibrosis 0.54, Pneumothorax 0.53",0,0,0,exact
+00013285_015.png,AP,Effusion,Infiltration,"Atelectasis 0.66, Consolidation 0.65, Effusion 0.65",1,1,0,miss
+00019663_004.png,PA,Atelectasis|Effusion,No Finding,"Mass 0.61, Nodule 0.58, Fibrosis 0.58",2,0,0,miss
+00001990_002.png,PA,Pleural_Thickening,No Finding,"Nodule 0.57, Mass 0.51, Atelectasis 0.50",1,0,0,miss
