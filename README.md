@@ -41,7 +41,7 @@ app in about fifteen minutes without downloading any dataset.**
 | OS | Windows 10/11, Linux or macOS | Developed on Windows 11; commands below are given for PowerShell and bash |
 | Python | **3.11** (3.10–3.12 should work) | `python --version`. Get it from python.org; tick "Add to PATH" |
 | Git | any recent version | git-scm.com |
-| Disk | ~1.5 GB | clone ≈ 340 MB, Python packages ≈ 1 GB (PyTorch is large) |
+| Disk | ~2 GB | clone ≈ 350 MB download (≈ 700 MB on disk with git history), Python packages ≈ 1 GB (PyTorch is large) |
 | GPU | optional | NVIDIA GPU with ≥ 4 GB makes analysis ~1 s per film. CPU works, ~5 s per film |
 | Ollama | optional | only for the "Generate draft report" button (MedGemma). See step 5 |
 | NIH images | optional | only for retraining or re-scoring. See section 3 |
@@ -53,9 +53,9 @@ git clone https://github.com/trinity1611/Attention-as-Evidence.git
 cd Attention-as-Evidence
 ```
 
-The clone is ~340 MB because it contains the trained weights
-(`checkpoints/`, 27 MB per model) and every result table and figure. If the
-clone stalls on a slow connection, run it again; git resumes.
+The download is ~350 MB (about 700 MB on disk) because the repository contains
+the trained weights (`checkpoints/`, 27 MB per model) and every result table
+and figure. If the clone stalls on a slow connection, run it again.
 
 ### Step 2 · Create the environment and install
 
@@ -388,7 +388,7 @@ Always run modules as `python -m src.<name>` from the repository root so the
 | Windows: DataLoader workers crash or hang during training | Lower `train.num_workers` to 0 or 2 in your `config.local.yaml`. |
 | `Port 8501 is already in use` | Another Streamlit is running. Close it, or `streamlit run app/Home.py --server.port 8502`. |
 | Training out of memory | Lower `train.batch_size` (24 fits 320 px on 8 GB; use 12 on 4–6 GB). |
-| `git clone` slow or fails on the ~340 MB repo | Retry; or `git clone --depth 1 ...` to skip history. |
+| `git clone` slow or fails on the ~350 MB download | Retry; or `git clone --depth 1 ...` to skip history. |
 
 ---
 
