@@ -1,0 +1,15 @@
+class,auprc,prevalence,lift_over_chance,n_pos
+Atelectasis,0.2646,0.0906,2.92,508
+Cardiomegaly,0.1866,0.0252,7.4184,141
+Consolidation,0.0984,0.0403,2.4398,226
+Edema,0.1466,0.021,6.9634,118
+Effusion,0.3728,0.1149,3.2452,644
+Emphysema,0.1539,0.0227,6.7921,127
+Fibrosis,0.0375,0.015,2.4996,84
+Hernia,0.0342,0.0023,14.7291,13
+Infiltration,0.2849,0.1725,1.6514,967
+Mass,0.2781,0.0507,5.489,284
+Nodule,0.1525,0.0558,2.7319,313
+Pleural_Thickening,0.1061,0.0314,3.3784,176
+Pneumonia,0.0106,0.0111,0.9572,62
+Pneumothorax,0.3316,0.0483,6.8587,271

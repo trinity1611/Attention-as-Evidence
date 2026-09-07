@@ -1,0 +1,8 @@
+{
+  "mean": {
+    "densenet121_imagenet": 0.7527747213936536
+  },
+  "std": {
+    "densenet121_imagenet": 0.019630694847292622
+  }
+}

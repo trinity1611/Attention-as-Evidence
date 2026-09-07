@@ -1,0 +1,32 @@
+{
+  "model": "densenet121_full224",
+  "checkpoint": "checkpoints/densenet121_full224.pt",
+  "trained_on": "77,988 NIH ChestX-ray14 films (official train_val minus a 10 % patient-grouped validation split), 224 px, 8 epochs, one Kaggle T4 GPU-hour",
+  "evaluated_on": "NIH official test split, 25,596 films (25,596 for AUROC/AUPRC; thresholds fitted on a random half, threshold metrics reported on the other 12,798)",
+  "n_test": 25596,
+  "n_threshold_fit": 12798,
+  "n_threshold_report": 12798,
+  "macro": {
+    "auroc": 0.8117983603877843,
+    "auprc": 0.2764521790215392,
+    "accuracy": 0.8765264661889136,
+    "precision": 0.29228039543485995,
+    "recall": 0.4363727274539423,
+    "f1": 0.3408292449630692
+  },
+  "micro": {
+    "precision": 0.3139427516158818,
+    "recall": 0.5226939970717424,
+    "f1": 0.3922753619207208
+  },
+  "film_level": {
+    "exact_label_set_match": 0.2349585872792624,
+    "abnormal_films_with_at_least_one_correct_finding": 0.6802340371406767,
+    "normal_films_with_no_finding_reported": 0.47487844408427876,
+    "share_abnormal_in_report_half": 0.6143147366776058
+  },
+  "notes": [
+    "Accuracy per finding is dominated by the negatives (prevalence 0.2-18 %); it is reported because it was asked for, but AUROC / AUPRC / F1 are the informative numbers.",
+    "Probabilities are uncalibrated (class-weighted training); thresholds are per finding."
+  ]
+}

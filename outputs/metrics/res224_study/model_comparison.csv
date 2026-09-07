@@ -1,0 +1,4 @@
+model,macro_auroc_all14,std_all14,macro_auroc_wellpowered,std_wellpowered,n_folds
+densenet121_imagenet,0.728,0.0155,0.7252,0.0037,5
+densenet121_chexpert,0.7228,0.0088,0.7063,0.0062,5
+efficientnet_b0,0.7202,0.0086,0.7121,0.0087,5

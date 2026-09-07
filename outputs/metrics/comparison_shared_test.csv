@@ -1,0 +1,14 @@
+class,densenet121_full224,densenet121_imagenet,ensemble_cnn_raddino,raddino_linear,n_pos
+Infiltration,0.7225,0.7058,0.7039,0.6714,284
+Effusion,0.8155,0.7369,0.7576,0.7165,225
+Atelectasis,0.8067,0.7607,0.7738,0.7243,144
+Pneumothorax,0.8764,0.8163,0.869,0.8625,138
+Consolidation,0.7591,0.6706,0.6781,0.644,95
+Mass,0.818,0.6361,0.7557,0.7764,88
+Nodule,0.7226,0.6271,0.6666,0.6522,83
+Pleural_Thickening,0.7419,0.6672,0.7108,0.6953,60
+Cardiomegaly,0.888,0.7656,0.817,0.7983,60
+Emphysema,0.9363,0.814,0.8718,0.8627,56
+Edema,0.8818,0.7714,0.839,0.8278,48
+Pneumonia,0.7431,0.6832,0.6027,0.5134,30
+Fibrosis,0.7807,0.7011,0.7771,0.7416,27

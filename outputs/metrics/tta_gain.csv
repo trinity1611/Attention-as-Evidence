@@ -1,0 +1,6 @@
+model,fold,auroc_plain,auroc_tta,gain
+densenet121_imagenet,0,0.7592,0.7619,0.0027
+densenet121_imagenet,1,0.7466,0.7532,0.0066
+densenet121_imagenet,2,0.7625,0.7698,0.0073
+densenet121_imagenet,3,0.7215,0.7225,0.001
+densenet121_imagenet,4,0.7725,0.7783,0.0058

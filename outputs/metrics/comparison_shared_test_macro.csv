@@ -1,0 +1,5 @@
+model,n_images,macro_auroc,diff_vs_baseline,ci95_low,ci95_high,p_diff_le_0
+densenet121_imagenet,1293,0.7197,,,,
+ensemble_cnn_raddino,1293,0.7556,0.0359,0.0236,0.0483,0.0
+raddino_linear,1293,0.7297,0.01,-0.0099,0.0298,0.1495
+densenet121_full224,1293,0.8071,0.0874,0.0708,0.1044,0.0

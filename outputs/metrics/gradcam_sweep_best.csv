@@ -1,0 +1,9 @@
+finding,n,hits_best,iou_best,hits_base,iou_base
+Atelectasis,11,5,0.189,0,0.11
+Cardiomegaly,10,10,0.116,8,0.586
+Pneumonia,9,6,0.238,3,0.162
+Effusion,8,4,0.142,1,0.077
+Pneumothorax,6,2,0.122,3,0.2
+Mass,4,3,0.236,2,0.156
+Nodule,3,1,0.044,0,0.015
+Infiltration,2,2,0.223,2,0.582

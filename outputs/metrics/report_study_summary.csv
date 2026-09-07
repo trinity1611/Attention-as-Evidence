@@ -1,0 +1,4 @@
+condition,n_reports,parse_ok_rate,mean_present_per_report,unsupported_by_classifier_per_report,unsupported_rate_vs_classifier,omission_rate_vs_classifier,unsupported_but_true_per_report,unsupported_and_false_per_report,share_of_unsupported_that_were_true,false_findings_vs_truth_per_report,precision_vs_truth,recall_vs_truth,normal_films_kept_clean,localisation_agreement,mean_seconds
+A,200,1.0,1.945,1.24,0.431,0.622,0.08,1.16,0.065,1.655,0.16,0.318,0.44,,31.608
+B,200,1.0,5.62,3.855,0.665,0.012,0.175,3.68,0.045,4.955,0.13,0.808,0.0,,11.487
+C,200,1.0,4.57,2.785,0.561,0.007,0.14,2.645,0.05,3.94,0.15,0.775,0.01,0.93,11.045

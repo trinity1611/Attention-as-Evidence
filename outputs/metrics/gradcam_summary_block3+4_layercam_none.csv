@@ -1,0 +1,17 @@
+model,finding,n,pointing_hit_rate,chance_rate,mean_iou,mean_cam_mass_in_box,mean_box_coverage,mean_prob,cam_config
+densenet121_full224,Atelectasis,11,0.455,0.032,0.162,0.091,0.788,0.669,block3+4_layercam_none
+densenet121_full224,Cardiomegaly,10,0.9,0.181,0.525,0.525,0.577,0.794,block3+4_layercam_none
+densenet121_full224,Effusion,8,0.375,0.043,0.148,0.094,0.676,0.837,block3+4_layercam_none
+densenet121_full224,Infiltration,2,1.0,0.19,0.646,0.44,0.76,0.827,block3+4_layercam_none
+densenet121_full224,Mass,4,0.75,0.047,0.192,0.132,0.837,0.832,block3+4_layercam_none
+densenet121_full224,Nodule,3,0.0,0.004,0.015,0.01,0.667,0.797,block3+4_layercam_none
+densenet121_full224,Pneumonia,9,0.778,0.047,0.27,0.139,0.797,0.544,block3+4_layercam_none
+densenet121_full224,Pneumothorax,6,0.333,0.054,0.174,0.126,0.464,0.72,block3+4_layercam_none
+densenet121_imagenet,Atelectasis,11,0.091,0.032,0.087,0.057,0.762,0.628,block3+4_layercam_none
+densenet121_imagenet,Cardiomegaly,10,0.9,0.181,0.394,0.325,0.728,0.578,block3+4_layercam_none
+densenet121_imagenet,Effusion,8,0.25,0.043,0.132,0.081,0.64,0.747,block3+4_layercam_none
+densenet121_imagenet,Infiltration,2,0.5,0.19,0.38,0.3,0.614,0.596,block3+4_layercam_none
+densenet121_imagenet,Mass,4,0.0,0.047,0.091,0.071,0.807,0.55,block3+4_layercam_none
+densenet121_imagenet,Nodule,3,0.0,0.004,0.01,0.007,0.888,0.498,block3+4_layercam_none
+densenet121_imagenet,Pneumonia,9,0.222,0.047,0.16,0.083,0.836,0.449,block3+4_layercam_none
+densenet121_imagenet,Pneumothorax,6,0.167,0.054,0.077,0.076,0.44,0.7,block3+4_layercam_none

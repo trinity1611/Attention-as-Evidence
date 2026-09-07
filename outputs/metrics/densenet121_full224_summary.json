@@ -1,0 +1,27 @@
+{
+  "model": "densenet121_full224",
+  "img": 224,
+  "n_train": 77988,
+  "n_val": 8536,
+  "n_test": 25596,
+  "best_val_auroc": 0.8269080470638579,
+  "test_macro_auroc_tta": 0.8117983603877843,
+  "test_per_class_auroc": {
+    "Atelectasis": 0.767163878628555,
+    "Cardiomegaly": 0.8888731011504741,
+    "Consolidation": 0.7510154007476164,
+    "Edema": 0.8468058460146336,
+    "Effusion": 0.827393864508522,
+    "Emphysema": 0.9053747699135296,
+    "Fibrosis": 0.8280295129252669,
+    "Hernia": 0.9207303565405268,
+    "Infiltration": 0.7037837244763054,
+    "Mass": 0.8245098558029995,
+    "Nodule": 0.7543952519597487,
+    "Pleural_Thickening": 0.7677534588019461,
+    "Pneumonia": 0.7221622485070431,
+    "Pneumothorax": 0.8571857754518142
+  },
+  "epochs_run": 8,
+  "hours": 1.0016693914598889
+}
