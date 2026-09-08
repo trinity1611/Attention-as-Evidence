@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attention as Evidence · Review 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#0B1220; --bg2:#0F1728; --card:#131C2E; --card2:#182338; --line:#22304A;
+    --ink:#E6ECF5; --muted:#8A97AD; --faint:#5B6880;
+    --accent:#4FD1FF; --accent-ink:#0B1220;
+    --s1:#2299CC; --s2:#C97A2A; --s3:#8878C2; --neutral:#3B4B69;
+    --ok:#3DDC97; --warn:#F2A65A; --bad:#FF6B6B;
+    --sans:Inter,-apple-system,"Segoe UI",Roboto,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{color-scheme:dark}
+  body{margin:0;background:
+      radial-gradient(1100px 520px at 8% -10%, rgba(79,209,255,.09), transparent 60%),
+      radial-gradient(800px 420px at 100% 0%, rgba(242,166,90,.06), transparent 60%),
+      var(--bg);
+    color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.5;}
+  a{color:var(--accent)}
+  .wrap{max-width:1200px;margin:0 auto;padding:28px 28px 64px}
+
+  /* ---- header ---- */
+  header{display:flex;flex-wrap:wrap;gap:18px 32px;align-items:flex-end;justify-content:space-between;
+         padding-bottom:22px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:600}
+  h1{margin:.2rem 0 .3rem;font-size:2rem;line-height:1.1;letter-spacing:-.02em;font-weight:700;text-wrap:balance}
+  .sub{color:var(--muted);max-width:62ch;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:var(--mono);font-size:.74rem;padding:5px 10px;border-radius:999px;border:1px solid var(--line);
+        background:var(--card);color:var(--muted);white-space:nowrap}
+  .chip b{color:var(--ink);font-weight:600}
+  .chip.now{border-color:rgba(79,209,255,.5);color:var(--accent)}
+  .chip.now b{color:var(--accent)}
+
+  /* ---- summary strip ---- */
+  .strip{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0 8px}
+  .stage{background:linear-gradient(180deg,var(--card2),var(--card));border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+         display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline}
+  .stage .n{grid-row:1/3;font-family:var(--mono);font-size:.8rem;color:var(--faint);align-self:start;padding-top:4px}
+  .stage .k{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .stage .v{font-size:1.9rem;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .stage .v small{font-size:.9rem;color:var(--muted);font-weight:500;margin-left:6px}
+
+  /* ---- sections ---- */
+  section{margin-top:40px}
+  .shead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .shead h2{margin:0;font-size:1.3rem;letter-spacing:-.015em;font-weight:650}
+  .shead .num{font-family:var(--mono);color:var(--faint);font-size:.9rem}
+  .shead p{margin:0;color:var(--muted);flex-basis:100%;max-width:78ch}
+
+  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:14px}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;min-width:0}
+  .kpi .k{font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  .kpi .v{font-size:1.55rem;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-top:2px}
+  .kpi .d{font-size:.78rem;color:var(--muted);margin-top:3px;font-family:var(--mono)}
+  .kpi.hi{border-color:rgba(79,209,255,.45);box-shadow:0 0 0 1px rgba(79,209,255,.12) inset}
+  .kpi .d .up{color:var(--ok)} .kpi .d .dn{color:var(--bad)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px 12px;min-width:0}
+  .card h3{margin:0 0 2px;font-size:1rem;font-weight:600}
+  .card .cap{color:var(--muted);font-size:.84rem;margin:0 0 10px}
+  .chart{overflow-x:auto}
+  .chart svg{display:block;width:100%;height:auto;font-family:var(--sans)}
+  .legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.8rem;color:var(--muted);margin:8px 0 2px}
+  .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:6px}
+  .note{color:var(--muted);font-size:.82rem;margin:8px 0 0;border-top:1px solid var(--line);padding-top:8px}
+  details{margin-top:8px}
+  summary{cursor:pointer;color:var(--accent);font-size:.8rem;font-family:var(--mono)}
+  summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}
+  th,td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
+  th{color:var(--muted);font-weight:500;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}
+  td.num,th.num{text-align:right;font-family:var(--mono)}
+
+  .small-multiples{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .sm h4{margin:0 0 4px;font-size:.82rem;font-weight:600;color:var(--ink)}
+  .sm .u{font-size:.72rem;color:var(--muted);margin:0 0 6px;font-family:var(--mono)}
+
+  /* ---- plan ---- */
+  .plan{display:grid;grid-template-columns:1.1fr 2fr;gap:14px}
+  .show{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .show h3{margin:0 0 8px;font-size:1rem}
+  .show ol{margin:0;padding-left:1.2rem;color:var(--ink)}
+  .show li{margin:6px 0}
+  .show li span{color:var(--muted)}
+  .work{display:flex;flex-direction:column;gap:10px}
+  .item{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;
+        display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:start}
+  .item .wk{grid-row:1/3;font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.06em;
+            border:1px solid rgba(79,209,255,.35);border-radius:6px;padding:4px 7px;white-space:nowrap;margin-top:2px}
+  .item h4{margin:0;font-size:.95rem;font-weight:600;grid-column:2}
+  .item p{margin:0;color:var(--muted);font-size:.85rem;grid-column:2}
+  .item p b{color:var(--ink);font-weight:500}
+  .pill{font-family:var(--mono);font-size:.7rem;padding:3px 8px;border-radius:999px;white-space:nowrap;margin-top:2px;grid-column:3;grid-row:1}
+  .pill.planned{background:rgba(79,209,255,.12);color:var(--accent)}
+  .pill.stretch{background:rgba(242,166,90,.14);color:var(--warn)}
+  .pill.ready{background:rgba(61,220,151,.14);color:var(--ok)}
+
+  footer{margin-top:44px;border-top:1px solid var(--line);padding-top:12px;color:var(--faint);font-size:.78rem}
+
+  /* ---- tooltip ---- */
+  #tip{position:fixed;pointer-events:none;z-index:9;background:#0B1220;border:1px solid var(--line);border-radius:8px;
+       padding:6px 9px;font-size:.78rem;color:var(--ink);box-shadow:0 8px 24px rgba(0,0,0,.4);display:none;max-width:280px}
+  #tip b{font-family:var(--mono);font-weight:600}
+
+  @media (max-width:980px){
+    .strip,.grid2,.plan{grid-template-columns:1fr}
+    .kpis{grid-template-columns:repeat(3,1fr)}
+    .small-multiples{grid-template-columns:repeat(2,1fr)}
+  }
+  @media (max-width:560px){
+    .wrap{padding:18px 14px 48px}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    h1{font-size:1.6rem}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .kpi,.stage,.card{transition:border-color .2s}
+  }
+  @media print{
+    body{background:var(--bg)} .wrap{max-width:none} details{display:none}
+  }
+</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header>
+  <div>
+    <div class="eyebrow">Capstone · Chest radiograph AI · Review 2</div>
+    <h1>Attention as Evidence</h1>
+    <p class="sub">Coupling Grad-CAM localisation to vision-language report generation for chest radiographs.
+      Every number on this page is held-out and comes from <code>outputs/metrics</code> in the project repository.</p>
+  </div>
+  <div class="meta">
+    <span class="chip now">Review 2 · <b>9 Sep 2026</b></span>
+    <span class="chip">Review 3 · <b>last week of Sep 2026</b></span>
+    <span class="chip">Data · <b>NIH ChestX-ray14</b></span>
+    <span class="chip">Repo · <b>trinity1611/Attention-as-Evidence</b></span>
+  </div>
+</header>
+
+<div class="strip">
+  <div class="stage"><span class="n">01</span><span class="k">Classify · DenseNet-121, full NIH</span>
+    <span class="v">0.812<small>macro AUROC · 25,596 test films</small></span></div>
+  <div class="stage"><span class="n">02</span><span class="k">Explain · LayerCAM, blocks 3+4</span>
+    <span class="v">31 / 53<small>heatmap peaks inside radiologist boxes</small></span></div>
+  <div class="stage"><span class="n">03</span><span class="k">Write · MedGemma 4B, grounded</span>
+    <span class="v">−1.07<small>unsupported findings per report vs scores alone</small></span></div>
+</div>
+
+<!-- ============================================================ 1 -->
+<section id="cls">
+  <div class="shead"><span class="num">01</span><h2>Classification</h2>
+    <p>Fourteen findings, multi-label. Seven classifiers were trained; the one deployed is a DenseNet-121 fine-tuned on
+       77,988 NIH films on a Kaggle T4 and evaluated on NIH's official 25,596-film test split, which no model ever saw.</p></div>
+
+  <div class="kpis">
+    <div class="kpi hi"><div class="k">AUROC</div><div class="v">0.812</div><div class="d">macro, 14 findings</div></div>
+    <div class="kpi"><div class="k">AUPRC</div><div class="v">0.276</div><div class="d">prevalence 0.3–24 %</div></div>
+    <div class="kpi"><div class="k">Accuracy</div><div class="v">87.7 %</div><div class="d">macro · see note</div></div>
+    <div class="kpi"><div class="k">Precision</div><div class="v">0.292</div><div class="d">micro 0.314</div></div>
+    <div class="kpi"><div class="k">Recall</div><div class="v">0.436</div><div class="d">micro 0.523</div></div>
+    <div class="kpi"><div class="k">F1</div><div class="v">0.341</div><div class="d">micro 0.392</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>Every classifier we trained on the sample</h3>
+      <p class="cap">Macro AUROC, patient-grouped 5-fold cross-validation on the 5,606-film NIH sample. Same folds for all six.</p>
+      <div class="chart" id="c-models"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>best on the sample (ensemble)</span><span><i style="background:var(--neutral)"></i>other configurations</span></div>
+      <p class="note">Pretraining source and architecture made no measurable difference (Δ ≤ 0.008, p ≥ 0.25). Resolution and a
+        converged schedule gave +0.025 on every fold; the ensemble +0.029 (p = 0.001). Axis starts at 0.5 = chance.
+        The full-data model cannot appear here: it was trained on the full NIH set, not on these folds.</p>
+      <details><summary>table</summary><div id="t-models"></div></details>
+    </div>
+    <div class="card">
+      <h3>The fair comparison: same 1,293 held-out films</h3>
+      <p class="cap">Films in both our sample and NIH's official test list, never trained on by any model. Δ vs the sample CNN with 95 % paired-bootstrap CI.</p>
+      <div class="chart" id="c-shared"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>chosen for deployment</span><span><i style="background:var(--neutral)"></i>sample-trained models</span></div>
+      <p class="note">Data volume beat every other lever by more than 2×: +0.087 [+0.071, +0.104] over the sample CNN, ahead on all
+        13 scorable findings, at a lower resolution, in one GPU-hour. Accuracy is quoted because it is conventional; at 0.3–24 %
+        prevalence a model that never reports a finding already scores ~90 %, so AUROC / AUPRC / F1 carry the information.</p>
+      <details><summary>table</summary><div id="t-shared"></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 -->
+<section id="xai">
+  <div class="shead"><span class="num">02</span><h2>Explainability</h2>
+    <p>Heatmaps are measured, not just shown. 111 configurations of layer × attribution method × smoothing × resolution were
+       scored against the 53 radiologist-drawn boxes that fall on our films (all in the official test split). Selection rule
+       fixed beforehand: peak-in-box hits, then IoU.</p></div>
+
+  <div class="kpis">
+    <div class="kpi hi"><div class="k">Peak in box</div><div class="v">31 / 53</div><div class="d">58.5 % · chance 7 %</div></div>
+    <div class="kpi"><div class="k">IoU @ 50 % of peak</div><div class="v">0.260</div><div class="d">best of all 111</div></div>
+    <div class="kpi"><div class="k">Box coverage</div><div class="v">0.69</div><div class="d">share of box in region</div></div>
+    <div class="kpi"><div class="k">Sweep rank</div><div class="v">#2</div><div class="d">of 111 by hits</div></div>
+    <div class="kpi"><div class="k">vs original default</div><div class="v">+12</div><div class="d"><span class="up">19 → 31</span> hits</div></div>
+    <div class="kpi"><div class="k">Cost</div><div class="v">1 pass</div><div class="d">no smoothing, 224 px</div></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h3>111 configurations: best result for each layer × method</h3>
+      <p class="cap">Hits out of 53 boxes, deployed model. Each bar is the best of up to 8 smoothing × resolution variants.</p>
+      <div class="chart" id="c-sweep"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>adopted: blocks 3+4, LayerCAM, none, 224 px</span><span><i style="background:var(--s2)"></i>original default family: block 4, Grad-CAM</span><span><i style="background:var(--neutral)"></i>other</span></div>
+      <p class="note">The layer, not the algorithm, was the bottleneck: no block-4 configuration passed 23 hits; block 3 reached 33.
+        The strict winner (block 3, LayerCAM, smoothing, 320 px) makes 5 %-of-image blobs, IoU 0.166, and costs 6× the compute;
+        the adopted runner-up is 2 hits behind with the best IoU of all 111. The original default scored 19 hits, rank 81.</p>
+      <details><summary>table</summary><div id="t-sweep"></div></details>
+    </div>
+    <div class="card">
+      <h3>Per finding: deployed model vs sample-trained model, same method</h3>
+      <p class="cap">Peak-in-box hit rate on the 53 boxes; bar label gives hits / boxes.</p>
+      <div class="chart" id="c-perfinding"></div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>deployed, full-data DenseNet</span><span><i style="background:var(--s2)"></i>sample-trained DenseNet (320 px)</span></div>
+      <p class="note">More data improved <em>where</em> the model looks, not only what it predicts: 31 vs 16 hits with the identical
+        method. Cardiomegaly localises reliably; Nodule (millimetre-scale, 3 boxes) does not. 53 boxes is a small set; confirmation
+        on all 984 NIH boxes is the first task for review 3.</p>
+      <details><summary>table</summary><div id="t-perfinding"></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 -->
+<section id="rep">
+  <div class="shead"><span class="num">03</span><h2>Report generation with MedGemma 4B</h2>
+    <p>MedGemma runs locally through Ollama and writes a structured draft. Same 200 held-out films (100 abnormal, 100 normal),
+       temperature 0, three briefings: <b>A</b> image only · <b>B</b> image + the 14 classifier scores ·
+       <b>C</b> image + scores + the Grad-CAM zone of every flagged finding. 600 reports, 100 % parsed.</p></div>
+
+  <div class="kpis">
+    <div class="kpi hi"><div class="k">Effect of the zone</div><div class="v">−1.07</div><div class="d">C − B · CI [−1.37, −0.80]</div></div>
+    <div class="kpi"><div class="k">False vs truth</div><div class="v">3.94</div><div class="d"><span class="up">B 4.96</span> · per report</div></div>
+    <div class="kpi"><div class="k">Recall vs truth</div><div class="v">0.78</div><div class="d">A 0.32 · B 0.81</div></div>
+    <div class="kpi"><div class="k">Flagged omitted</div><div class="v">0.7 %</div><div class="d">A 62 % · B 1.2 %</div></div>
+    <div class="kpi"><div class="k">Location agrees</div><div class="v">93 %</div><div class="d">with the zone given</div></div>
+    <div class="kpi"><div class="k">Speed</div><div class="v">11 s</div><div class="d">per report · RTX 4060</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Three briefings, same films: what changes per report</h3>
+    <p class="cap">Means over 200 reports per condition. Unsupported = asserted but not flagged by the classifier; false = not in the NIH labels.</p>
+    <div class="small-multiples" id="c-study"></div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>C · grounded (deployed in the app)</span><span><i style="background:var(--neutral)"></i>A · image only, B · image + scores</span></div>
+    <p class="note">Handing the model raw scores (B) makes it assert 2.9× more findings than the image alone and never leaves a normal
+      film clean. Adding the heatmap zone (C) pulls it back toward the labels, not merely toward the classifier: fewer unsupported
+      and fewer false findings at almost the same recall. Only ~5 % of what MedGemma adds beyond the classifier is in the labels.
+      No condition produces a draft fit to go out unread.</p>
+    <details><summary>table</summary><div id="t-study"></div></details>
+  </div>
+</section>
+
+<!-- ============================================================ 4 -->
+<section id="next">
+  <div class="shead"><span class="num">04</span><h2>Towards review 3</h2>
+    <p>Last week of September 2026. Three working weeks from this review. Everything marked <em>planned</em> is scoped, has a
+       script or notebook to start from and a measured baseline to beat; <em>stretch</em> items run if the first three land early.</p></div>
+
+  <div class="plan">
+    <div class="show">
+      <h3>What review 3 will show</h3>
+      <ol>
+        <li>The heatmap method confirmed (or revised) on all <b>984</b> NIH radiologist boxes, not 53. <span>Removes the small-sample caveat on section 02.</span></li>
+        <li>A <b>320 px</b> full-data classifier beside the current 224 px one on the official test split, with an hflip ablation. <span>Targets Nodule, Mass, Pneumonia.</span></li>
+        <li><b>Calibrated</b> probabilities, so the app's scores read as probabilities and thresholds are principled.</li>
+        <li>A second grounded briefing, <b>D</b>, that gives MedGemma the heatmap <em>image</em>, re-scored on the same 200 films.</li>
+        <li>A small <b>blinded reader study</b> of grounded vs ungrounded drafts, if time allows.</li>
+        <li>The live app, the updated report and the repository, unchanged in scope, sharper in numbers.</li>
+      </ol>
+    </div>
+
+    <div class="work">
+      <div class="item"><span class="wk">WK 1 · 10–16 Sep</span>
+        <h4>Validate the adopted heatmap configuration on all 984 boxes</h4>
+        <p>Kaggle notebook, ~30 GPU-minutes; the sweep scorer already exists (<b>src.gradcam_sweep</b>). Re-rank the top 10 configurations. Success: hit rate and IoU reported with 95 % CIs; adopted method kept or replaced with a stated reason.</p>
+        <span class="pill planned">planned</span></div>
+      <div class="item"><span class="wk">WK 1–2 · 10–23 Sep</span>
+        <h4>Full-data DenseNet-121 at 320 px, plus hflip on/off</h4>
+        <p>Same Kaggle trainer (<b>kaggle/train_full_nih.py</b>) with <b>image_px 320</b>, ~2 GPU-hours; 8 epochs were still improving. Success: per-finding AUROC on the official test split beside the 224 px model, paired bootstrap on the shared 1,293 films.</p>
+        <span class="pill planned">planned</span></div>
+      <div class="item"><span class="wk">WK 2 · 17–23 Sep</span>
+        <h4>Calibration and thresholds</h4>
+        <p>Per-finding temperature scaling fitted on the threshold-fitting half of the test split; reliability diagrams before and after; thresholds re-fitted on calibrated scores. Success: expected calibration error reported; the app shows probabilities, not scores.</p>
+        <span class="pill planned">planned</span></div>
+      <div class="item"><span class="wk">WK 2–3 · 17–26 Sep</span>
+        <h4>Briefing D: the heatmap image itself, and an evidence rule in the prompt</h4>
+        <p>Send the LayerCAM overlay as a second image and require each asserted finding to cite the score or zone that supports it. Re-run the 200-film study (~3 h, resumable). Success: false findings vs truth below 3.5 per report at recall ≥ 0.75.</p>
+        <span class="pill planned">planned</span></div>
+      <div class="item"><span class="wk">WK 3 · 24–26 Sep</span>
+        <h4>Blinded reader study, 30 films</h4>
+        <p>Teammates read B and C drafts side by side without knowing which is which, mark preference and count errors. Success: preference and error counts with a sign test; adds a human judgement to the automatic metrics.</p>
+        <span class="pill stretch">stretch</span></div>
+      <div class="item"><span class="wk">WK 3 · 24–26 Sep</span>
+        <h4>App, report and repository update</h4>
+        <p>Dashboard reads the new tables automatically; Analyse page shows calibrated probabilities; <b>Project_Briefing.docx</b> and README regenerated from <b>outputs/</b>. Success: a teammate reproduces the app from a fresh clone with <b>scripts/check_setup.py</b>.</p>
+        <span class="pill ready">continuous</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>Research and educational use only; not a medical device. Data: NIH ChestX-ray14 (Wang et al., CVPR 2017), CC0.
+  Classifier DenseNet-121 · Explanations LayerCAM (Jiang et al., 2021) · Writer MedGemma 4B-it via Ollama.
+  Source of every figure: <code>outputs/metrics/*.csv</code>, regenerated by the scripts in the repository.</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+  const C = {s1:'#2299CC', s2:'#C97A2A', s3:'#8878C2', neutral:'#3B4B69', ink:'#E6ECF5', muted:'#8A97AD', faint:'#5B6880', grid:'#22304A'};
+  const tip = document.getElementById('tip');
+  function showTip(e, html){ tip.innerHTML = html; tip.style.display='block'; moveTip(e); }
+  function moveTip(e){ const x = Math.min(e.clientX + 14, window.innerWidth - tip.offsetWidth - 8); tip.style.left = x+'px'; tip.style.top = (e.clientY + 14)+'px'; }
+  function hideTip(){ tip.style.display='none'; }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+  function wire(el){
+    el.querySelectorAll('[data-tip]').forEach(g => {
+      g.addEventListener('mouseenter', e => showTip(e, g.dataset.tip));
+      g.addEventListener('mousemove', moveTip);
+      g.addEventListener('mouseleave', hideTip);
+      g.setAttribute('tabindex','0');
+      g.addEventListener('focus', () => { const r = g.getBoundingClientRect(); showTip({clientX:r.right, clientY:r.top}, g.dataset.tip); });
+      g.addEventListener('blur', hideTip);
+    });
+  }
+
+  /* Horizontal bars. rows: [{label, series:[{v, color, tip, end}], sub}] ; opts: {min,max,ticks,fmt,labelW,barH}
+     Single-series rows draw one bar; multi-series rows are grouped with a 2px surface gap. */
+  function hbars(id, rows, o){
+    const W = o.W || 640, labelW = o.labelW || 210, right = o.right || 64, barH = o.barH || 16, gap = 2, rowGap = o.rowGap || 10;
+    const min = o.min ?? 0, max = o.max, fmt = o.fmt || (v => v.toFixed(3));
+    const plotW = W - labelW - right, x = v => labelW + (v - min) / (max - min) * plotW;
+    let y = 6, out = [];
+    const rowH = r => r.series.length * barH + (r.series.length - 1) * gap;
+    const totalH = rows.reduce((a, r) => a + rowH(r) + rowGap, 0) + 6 + 24 + (o.groups ? o.groups.length * 20 : 0);
+    // grid
+    (o.ticks || []).forEach(t => {
+      out.push(`<line x1="${x(t)}" x2="${x(t)}" y1="4" y2="${totalH - 22}" stroke="${C.grid}" stroke-width="1"/>`);
+      out.push(`<text x="${x(t)}" y="${totalH - 6}" text-anchor="middle" font-size="11" fill="${C.muted}" font-family="${getComputedStyle(document.documentElement).getPropertyValue('--mono')}">${o.tickFmt ? o.tickFmt(t) : t}</text>`);
+    });
+    let lastGroup = null;
+    rows.forEach(r => {
+      if (o.groups && r.group !== lastGroup){
+        out.push(`<text x="${labelW - 8}" y="${y + 13}" text-anchor="end" font-size="11" font-weight="600" letter-spacing=".08em" fill="${C.faint}">${esc(r.group).toUpperCase()}</text>`);
+        y += 20; lastGroup = r.group;
+      }
+      const h = rowH(r), cy = y + h / 2;
+      out.push(`<text x="${labelW - 8}" y="${cy + 4}" text-anchor="end" font-size="12.5" fill="${C.ink}">${esc(r.label)}</text>`);
+      r.series.forEach((s, i) => {
+        const by = y + i * (barH + gap), bw = Math.max(0, x(s.v) - x(min));
+        out.push(`<g data-tip="${esc(s.tip)}" style="outline:none">`
+          + `<rect x="${labelW}" y="${by - 2}" width="${plotW + right}" height="${barH + 4}" fill="transparent"/>`
+          + `<rect x="${x(min)}" y="${by}" width="${bw}" height="${barH}" rx="3" fill="${s.color}"/>`
+          + `<text x="${x(s.v) + 6}" y="${by + barH / 2 + 4}" font-size="11.5" fill="${s.hi ? C.ink : C.muted}" font-weight="${s.hi ? 600 : 500}" style="font-variant-numeric:tabular-nums">${esc(s.end ?? fmt(s.v))}</text>`
+          + `</g>`);
+      });
+      y += h + rowGap;
+    });
+    out.push(`<line x1="${x(min)}" x2="${x(min)}" y1="4" y2="${totalH - 22}" stroke="${C.faint}" stroke-width="1"/>`);
+    const el = document.getElementById(id);
+    el.innerHTML = `<svg viewBox="0 0 ${W} ${totalH}" role="img" aria-label="${esc(o.aria || '')}">${out.join('')}</svg>`;
+    wire(el);
+  }
+  function table(id, head, rows){
+    document.getElementById(id).innerHTML = `<table><thead><tr>${head.map((h, i) => `<th class="${i ? 'num' : ''}">${esc(h)}</th>`).join('')}</tr></thead><tbody>`
+      + rows.map(r => `<tr>${r.map((c, i) => `<td class="${i ? 'num' : ''}">${esc(c)}</td>`).join('')}</tr>`).join('') + '</tbody></table>';
+  }
+
+  /* ---------------- 1A: all models, 5-fold CV ---------------- */
+  const models = [
+    ['DenseNet-121 · ImageNet init · 224 px', 0.728, 0.0155, '15 epochs, 224 px study'],
+    ['DenseNet-121 · CheXpert init · 224 px', 0.723, 0.0088, 'Δ −0.005 vs ImageNet, p = 0.36'],
+    ['EfficientNet-B0 · 224 px', 0.720, 0.0086, 'Δ −0.008 vs DenseNet, p = 0.25'],
+    ['DenseNet-121 · ImageNet · 320 px + TTA', 0.757, 0.0215, '30 epochs, the local baseline'],
+    ['RAD-DINO frozen + linear probe', 0.755, 0.0196, 'Δ −0.002 vs baseline, p = 0.67'],
+    ['Ensemble: DenseNet 320 + RAD-DINO', 0.786, 0.0223, 'Δ +0.029 vs baseline, p = 0.001'],
+  ];
+  hbars('c-models', models.map(m => ({label: m[0], series: [{v: m[1], color: m[1] === 0.786 ? C.s1 : C.neutral, hi: m[1] === 0.786,
+      tip: `<b>${m[1].toFixed(3)}</b> ± ${m[2].toFixed(3)} macro AUROC<br>${esc(m[3])}`}]})),
+    {min: 0.5, max: 0.85, ticks: [0.5, 0.6, 0.7, 0.8], labelW: 250, aria: 'Macro AUROC of six classifiers under 5-fold cross-validation'});
+  table('t-models', ['model', 'macro AUROC', '± sd (5 folds)', 'note'], models.map(m => [m[0], m[1].toFixed(3), m[2].toFixed(4), m[3]]));
+
+  /* ---------------- 1B: shared 1,293 films ---------------- */
+  const shared = [
+    ['DenseNet-121 · sample · 320 px', 0.720, '—', '—'],
+    ['RAD-DINO linear probe', 0.730, '+0.010', '[−0.010, +0.030]'],
+    ['Ensemble', 0.756, '+0.036', '[+0.024, +0.048]'],
+    ['DenseNet-121 · full NIH · 224 px', 0.807, '+0.087', '[+0.071, +0.104]'],
+  ];
+  hbars('c-shared', shared.map(m => ({label: m[0], series: [{v: m[1], color: m[1] === 0.807 ? C.s1 : C.neutral, hi: m[1] === 0.807,
+      end: `${m[1].toFixed(3)}  ${m[2] === '—' ? '' : m[2]}`,
+      tip: `<b>${m[1].toFixed(3)}</b> macro AUROC, 13 findings, 1,293 films<br>Δ vs sample CNN ${esc(m[2])} ${esc(m[3])}`}]})),
+    {min: 0.5, max: 0.85, ticks: [0.5, 0.6, 0.7, 0.8], labelW: 250, right: 120, rowGap: 14, barH: 18, aria: 'Macro AUROC of four models on the same 1,293 held-out films'});
+  table('t-shared', ['model', 'macro AUROC', 'Δ vs sample CNN', '95 % CI'], shared.map(m => [m[0], m[1].toFixed(3), m[2], m[3]]));
+
+  /* ---------------- 2A: sweep, best per layer x method ---------------- */
+  const sweep = [
+    ['block 4', 'Grad-CAM', 22, 0.239], ['block 4', 'Grad-CAM++', 22, 0.242], ['block 4', 'HiResCAM', 23, 0.238], ['block 4', 'LayerCAM', 23, 0.240], ['block 4', 'XGrad-CAM', 21, 0.219],
+    ['block 3', 'Grad-CAM', 28, 0.188], ['block 3', 'Grad-CAM++', 6, 0.051], ['block 3', 'HiResCAM', 31, 0.186], ['block 3', 'LayerCAM', 33, 0.236], ['block 3', 'XGrad-CAM', 8, 0.074],
+    ['blocks 3+4', 'Grad-CAM', 30, 0.228], ['blocks 3+4', 'Grad-CAM++', 28, 0.233], ['blocks 3+4', 'HiResCAM', 31, 0.237], ['blocks 3+4', 'LayerCAM', 31, 0.264],
+  ];
+  hbars('c-sweep', sweep.map(s => {
+      const adopted = s[0] === 'blocks 3+4' && s[1] === 'LayerCAM', orig = s[0] === 'block 4' && s[1] === 'Grad-CAM';
+      return {group: s[0], label: s[1], series: [{v: s[2], color: adopted ? C.s1 : orig ? C.s2 : C.neutral, hi: adopted,
+        end: adopted ? '31 · adopted (IoU 0.260)' : `${s[2]}`,
+        tip: `<b>${s[2]} / 53</b> hits, best variant of ${esc(s[0])} × ${esc(s[1])}<br>best IoU in this cell ${s[3].toFixed(3)}`}]};
+    }), {min: 0, max: 53, ticks: [0, 10, 20, 30, 40, 53], labelW: 120, right: 150, barH: 13, rowGap: 5, groups: ['block 4', 'block 3', 'blocks 3+4'],
+        fmt: v => String(v), aria: 'Best peak-in-box hits per layer and attribution method across the 111-configuration sweep'});
+  table('t-sweep', ['layer', 'method', 'best hits / 53', 'best IoU'], sweep.map(s => [s[0], s[1], s[2], s[3].toFixed(3)]).concat([['blocks 3+4', 'XGrad-CAM', 'not run', '—']]));
+
+  /* ---------------- 2B: per finding, deployed vs sample ---------------- */
+  const pf = [['Cardiomegaly', 10, 9, 9], ['Pneumonia', 9, 7, 2], ['Atelectasis', 11, 5, 1], ['Effusion', 8, 3, 2], ['Mass', 4, 3, 0], ['Pneumothorax', 6, 2, 1], ['Infiltration', 2, 2, 1], ['Nodule', 3, 0, 0]];
+  hbars('c-perfinding', pf.map(p => ({label: p[0], series: [
+      {v: p[2] / p[1], color: C.s1, hi: true, end: `${p[2]} / ${p[1]}`, tip: `<b>${p[2]} / ${p[1]}</b> boxes hit · deployed model<br>${esc(p[0])}`},
+      {v: p[3] / p[1], color: C.s2, end: `${p[3]} / ${p[1]}`, tip: `<b>${p[3]} / ${p[1]}</b> boxes hit · sample-trained model<br>${esc(p[0])}`}]})),
+    {min: 0, max: 1, ticks: [0, 0.25, 0.5, 0.75, 1], tickFmt: t => `${Math.round(t * 100)} %`, labelW: 130, right: 70, barH: 12, rowGap: 11, aria: 'Peak-in-box hit rate per finding, deployed versus sample-trained model'});
+  table('t-perfinding', ['finding', 'boxes', 'deployed hits', 'sample-model hits'], pf.map(p => [p[0], p[1], p[2], p[3]]));
+
+  /* ---------------- 3: study small multiples ---------------- */
+  const study = [
+    ['Findings asserted', 'per report', [1.95, 5.62, 4.57], v => v.toFixed(2), 6],
+    ['Unsupported by classifier', 'per report', [1.24, 3.86, 2.79], v => v.toFixed(2), 6],
+    ['False vs NIH labels', 'per report', [1.66, 4.96, 3.94], v => v.toFixed(2), 6],
+    ['Recall vs NIH labels', 'share of true findings', [0.32, 0.81, 0.78], v => v.toFixed(2), 1],
+    ['Normal films left clean', 'share of 100 normals', [0.44, 0.00, 0.01], v => `${Math.round(v * 100)} %`, 1],
+  ];
+  const host = document.getElementById('c-study');
+  host.innerHTML = study.map((s, i) => `<div class="sm"><h4>${esc(s[0])}</h4><p class="u">${esc(s[1])}</p><div id="sm-${i}"></div></div>`).join('');
+  study.forEach((s, i) => hbars(`sm-${i}`, ['A', 'B', 'C'].map((c, k) => ({label: c, series: [{v: s[2][k], color: c === 'C' ? C.s1 : C.neutral, hi: c === 'C', end: s[3](s[2][k]),
+      tip: `<b>${s[3](s[2][k])}</b> ${esc(s[0].toLowerCase())}<br>condition ${c}: ${c === 'A' ? 'image only' : c === 'B' ? 'image + 14 scores' : 'image + scores + Grad-CAM zones'}`}]})),
+    {W: 230, min: 0, max: s[4], ticks: [], labelW: 22, right: 58, barH: 18, rowGap: 8, fmt: s[3], aria: s[0] + ' by condition'}));
+  table('t-study', ['metric', 'A · image', 'B · + scores', 'C · + zones'], study.map(s => [s[0] + ' (' + s[1] + ')', s[3](s[2][0]), s[3](s[2][1]), s[3](s[2][2])])
+    .concat([['Flagged findings omitted', '62 %', '1.2 %', '0.7 %'], ['Unsupported findings that were actually true', '6.5 %', '4.5 %', '5.0 %'], ['Location agrees with the zone given', '—', '—', '93 %'], ['Seconds per report', '31.6', '11.5', '11.0']]));
+})();
+</script>
+
+</body>
+</html>
