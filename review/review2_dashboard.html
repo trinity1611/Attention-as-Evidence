@@ -40,6 +40,12 @@
   .intro li{margin:4px 0}
   .intro li::marker{color:var(--c1l)}
 
+  .gloss h3{margin:0 0 10px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:var(--mono)}
+  .gloss dl{margin:0;display:grid;grid-template-columns:repeat(2,auto 1fr);gap:7px 12px;font-size:.86rem}
+  .gloss dt{font-weight:600;white-space:nowrap;color:var(--ink)}
+  .gloss dd{margin:0;color:var(--muted)}
+  .gloss dd b{color:var(--ink);font-weight:500}
+  @media (max-width:900px){.gloss dl{grid-template-columns:auto 1fr}}
   .phase{--hue:var(--c1);--hue-l:var(--c1l);--glow:var(--c1g);border-top:3px solid var(--hue)}
   .phase.p2{--hue:var(--c2);--hue-l:var(--c2l);--glow:var(--c2g)}
   .phase.p3{--hue:var(--c3);--hue-l:var(--c3l);--glow:var(--c3g)}
@@ -110,6 +116,24 @@
       <li>The effect of grounding is <b>quantified</b> on 600 reports, with paired confidence intervals.</li>
     </ul>
   </div>
+</div>
+
+<div class="card gloss">
+  <h3>Reading the numbers</h3>
+  <dl>
+    <dt>Held-out</dt><dd>Every number is measured on films the model never trained on: NIH's official test split, or held-out folds.</dd>
+    <dt>Prevalence</dt><dd>How common a finding is in the test films: from <b>0.3 %</b> (Hernia) to <b>24 %</b> (Infiltration). Most films are negative for most findings.</dd>
+    <dt>Macro</dt><dd>Each of the 14 findings is scored separately and the 14 scores are averaged equally. Rare findings count as much as common ones. <b>All headline metrics are macro.</b></dd>
+    <dt>Micro</dt><dd>All film × finding decisions pooled, then scored once; common findings dominate. Micro precision <b>0.314</b>, recall <b>0.523</b>, F1 <b>0.392</b>.</dd>
+    <dt>AUROC</dt><dd>Probability that a random positive film scores higher than a random negative one. 0.5 = chance, 1 = perfect. Independent of thresholds.</dd>
+    <dt>AUPRC</dt><dd>Area under the precision–recall curve. Chance level equals the prevalence, so <b>0.276</b> is about 4× chance at the average prevalence of 7 %.</dd>
+    <dt>Threshold</dt><dd>Per finding, the score above which it is flagged. Fitted on half of the test split to maximise F1, applied to the other half. Precision, recall, F1 and accuracy depend on it; AUROC and AUPRC do not.</dd>
+    <dt>Accuracy</dt><dd>Share of film × finding decisions that are right. Inflated by the many negatives: never flagging anything would already score about <b>93 %</b> on a 7 %-prevalence finding, so it is not the headline.</dd>
+    <dt>Peak in box</dt><dd>The heatmap's hottest point falls inside the radiologist's box. Chance is the box's share of the image, about <b>7 %</b>.</dd>
+    <dt>IoU</dt><dd>Intersection over union of the heatmap region (above 50 % of its peak) and the box. 0 = no overlap, 1 = identical.</dd>
+    <dt>Conditions A / B / C</dt><dd>What MedGemma is given before writing: <b>A</b> the image; <b>B</b> image + the 14 classifier scores; <b>C</b> image + scores + the heatmap zone of each flagged finding.</dd>
+    <dt>Unsupported / false</dt><dd>A report finding is <em>unsupported</em> if the classifier did not flag it, and <em>false</em> if it is not in the NIH labels. Both are counted per report; lower is better.</dd>
+  </dl>
 </div>
 
 <!-- ============================================================ phase 1 -->
