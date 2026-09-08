@@ -115,14 +115,14 @@
 <!-- ============================================================ phase 1 -->
 <div class="card phase p1">
   <div class="phead"><span class="num">PHASE 1</span><h2>Classification</h2>
-    <p class="what">DenseNet-121, 14 findings, multi-label. Trained on 77,988 NIH films (Kaggle T4); scored on NIH's official 25,596-film test split.</p></div>
+    <p class="what">DenseNet-121, 14 findings, multi-label. Trained on 77,988 NIH films (Kaggle T4); scored on NIH's official 25,596-film test split. Every metric is the average over the 14 findings.</p></div>
   <div class="kpis">
-    <div class="kpi hi"><div class="k">AUROC</div><div class="v">0.812</div><div class="d">macro, 14 findings</div></div>
-    <div class="kpi"><div class="k">AUPRC</div><div class="v">0.276</div><div class="d">prevalence 0.3–24 %</div></div>
-    <div class="kpi"><div class="k">Accuracy</div><div class="v">87.7 %</div><div class="d">macro</div></div>
-    <div class="kpi"><div class="k">Precision</div><div class="v">0.292</div><div class="d">micro 0.314</div></div>
-    <div class="kpi"><div class="k">Recall</div><div class="v">0.436</div><div class="d">micro 0.523</div></div>
-    <div class="kpi"><div class="k">F1</div><div class="v">0.341</div><div class="d">micro 0.392</div></div>
+    <div class="kpi hi"><div class="k">AUROC</div><div class="v">0.812</div><div class="d">ranking quality, 1 = perfect</div></div>
+    <div class="kpi"><div class="k">AUPRC</div><div class="v">0.276</div><div class="d">precision–recall area</div></div>
+    <div class="kpi"><div class="k">Accuracy</div><div class="v">87.7 %</div><div class="d">at per-finding thresholds</div></div>
+    <div class="kpi"><div class="k">Precision</div><div class="v">0.292</div><div class="d">flagged findings that are true</div></div>
+    <div class="kpi"><div class="k">Recall</div><div class="v">0.436</div><div class="d">true findings that are flagged</div></div>
+    <div class="kpi"><div class="k">F1</div><div class="v">0.341</div><div class="d">balance of precision and recall</div></div>
   </div>
   <div class="body">
     <div class="chart">
@@ -148,12 +148,12 @@
   <div class="phead"><span class="num">PHASE 2</span><h2>Explainability</h2>
     <p class="what">LayerCAM on dense blocks 3+4, chosen from 111 configurations scored against the 53 radiologist boxes on our films.</p></div>
   <div class="kpis">
-    <div class="kpi hi"><div class="k">Peak in box</div><div class="v">31 / 53</div><div class="d">58.5 % · chance 7 %</div></div>
-    <div class="kpi"><div class="k">IoU</div><div class="v">0.260</div><div class="d">best of all 111</div></div>
-    <div class="kpi"><div class="k">Box coverage</div><div class="v">0.69</div><div class="d">share of box covered</div></div>
-    <div class="kpi"><div class="k">Sweep rank</div><div class="v">#2</div><div class="d">of 111 by hits</div></div>
+    <div class="kpi hi"><div class="k">Peak in box</div><div class="v">31 / 53</div><div class="d">58.5 % of boxes (chance 7 %)</div></div>
+    <div class="kpi"><div class="k">IoU</div><div class="v">0.260</div><div class="d">heatmap–box overlap</div></div>
+    <div class="kpi"><div class="k">Box coverage</div><div class="v">0.69</div><div class="d">share of the box covered</div></div>
+    <div class="kpi"><div class="k">Sweep rank</div><div class="v">#2</div><div class="d">of 111 configurations</div></div>
     <div class="kpi"><div class="k">vs default</div><div class="v">+12</div><div class="d">19 → 31 hits</div></div>
-    <div class="kpi"><div class="k">Cost</div><div class="v">1 pass</div><div class="d">224 px, no smoothing</div></div>
+    <div class="kpi"><div class="k">Cost</div><div class="v">1 pass</div><div class="d">no extra compute</div></div>
   </div>
   <div class="body">
     <div class="chart">
@@ -179,12 +179,12 @@
   <div class="phead"><span class="num">PHASE 3</span><h2>Report generation · MedGemma 4B</h2>
     <p class="what">200 held-out films × 3 briefings = 600 reports. <b>A</b> image only · <b>B</b> + 14 classifier scores · <b>C</b> + Grad-CAM zones (grounded).</p></div>
   <div class="kpis">
-    <div class="kpi hi"><div class="k">Effect of grounding</div><div class="v">−1.07</div><div class="d">unsupported / report, C − B</div></div>
-    <div class="kpi"><div class="k">False vs truth</div><div class="v">3.94</div><div class="d">B 4.96 · A 1.66</div></div>
-    <div class="kpi"><div class="k">Recall vs truth</div><div class="v">0.78</div><div class="d">B 0.81 · A 0.32</div></div>
-    <div class="kpi"><div class="k">Flagged omitted</div><div class="v">0.7 %</div><div class="d">A 62 %</div></div>
+    <div class="kpi hi"><div class="k">Effect of grounding</div><div class="v">−1.07</div><div class="d">unsupported findings per report</div></div>
+    <div class="kpi"><div class="k">False vs truth</div><div class="v">3.94</div><div class="d">per report (4.96 without zones)</div></div>
+    <div class="kpi"><div class="k">Recall vs truth</div><div class="v">0.78</div><div class="d">true findings mentioned</div></div>
+    <div class="kpi"><div class="k">Flagged omitted</div><div class="v">0.7 %</div><div class="d">classifier findings dropped</div></div>
     <div class="kpi"><div class="k">Location agrees</div><div class="v">93 %</div><div class="d">with the zone given</div></div>
-    <div class="kpi"><div class="k">Parsed</div><div class="v">100 %</div><div class="d">600 / 600 · 11 s each</div></div>
+    <div class="kpi"><div class="k">Parsed</div><div class="v">100 %</div><div class="d">600 / 600 reports, 11 s each</div></div>
   </div>
   <div class="body">
     <div class="chart">
